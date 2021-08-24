@@ -24,13 +24,14 @@ using thZero.Instrumentation;
 
 namespace thZero.Responses.Users
 {
-	public abstract class BaseUserResponse<TData, TSettings> : SuccessResponse<TData>
-		where TData : BaseUserData<TSettings>
+	public abstract class BaseUserResponse<TUserData, TUserSettings, TPlanData> : SuccessResponse<TUserData>
+		where TUserData : BaseUserData<TUserSettings, TPlanData>
+		where TPlanData : BasePlanData
 	{
 		public BaseUserResponse(IInstrumentationPacket instrumentation) : base(instrumentation)
 		{
 		}
-		public BaseUserResponse(IInstrumentationPacket instrumentation, TData user) : base(instrumentation)
+		public BaseUserResponse(IInstrumentationPacket instrumentation, TUserData user) : base(instrumentation)
 		{
 			Results = user;
 			Success = true;

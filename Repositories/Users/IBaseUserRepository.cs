@@ -27,10 +27,11 @@ using thZero.Responses.Users;
 
 namespace thZero.Repositories.Users
 {
-    public interface IBaseUserRepository<TUserRequest, TUserResponse, TUserData, TUserSettings>
+    public interface IBaseUserRepository<TUserRequest, TUserResponse, TUserData, TPlanData, TUserSettings>
 		where TUserRequest : BaseUserRequest
-		where TUserResponse : BaseUserResponse<TUserData, TUserSettings>
-		where TUserData : BaseUserData<TUserSettings>
+		where TUserResponse : BaseUserResponse<TUserData, TUserSettings, TPlanData>
+		where TUserData : BaseUserData<TUserSettings, TPlanData>
+		where TPlanData : BasePlanData
 	{
 		Task<TUserResponse> FetchAsync(IInstrumentationPacket instrumentation, string userId, bool excludePlan = false);
 
